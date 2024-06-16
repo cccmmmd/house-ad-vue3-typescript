@@ -2,6 +2,7 @@
 import { defineComponent, ref } from 'vue';
 import House from './types/House'
 import HouseList from './components/HouseList.vue';
+import Order from './types/Order';
 
 
 export default defineComponent({
@@ -46,18 +47,44 @@ export default defineComponent({
         price: 1000
       },
     ])
-    return { houses }
+
+    const order = ref<Order>('price')
+    const clickHandler = (term: Order) => {
+      order.value = term
+    }
+    return { houses, clickHandler, order }
   },
-  
 })
 </script>
 
 <template>
-  <div class="app">
-    <HouseList :houses="houses"/>
-  </div>
+	<div class="app">
+    <header>
+      <div class="order">
+        <button @click="clickHandler('Price')">Order by price</button>
+		    <button @click="clickHandler('Sqare')">Order by sqare</button>
+		    <button @click="clickHandler('Region')">Order by region</button>
+      </div>
+    </header>
+				<HouseList :houses="houses" :order="order" />
+	</div>
 </template>
 
 <style scoped>
-
+ header {
+    text-align: center;
+  }
+  header .order {
+    margin-top: 20px;
+  }
+  button {
+    margin: 0 10px;
+    color: #1195c9;
+    border: 3px solid #1195c9;
+    background: #d5f0ff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
 </style>
