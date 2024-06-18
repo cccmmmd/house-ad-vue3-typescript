@@ -1,7 +1,8 @@
 <script lang="ts">
-import { PropType, defineComponent } from "vue";
+import { PropType, defineComponent, computed } from "vue";
 import House from "../types/House";
 import Order from "../types/Order";
+
 
 export default defineComponent({
 	props: {
@@ -15,7 +16,12 @@ export default defineComponent({
 		},
 	},
 	setup(props) {
-		console.log(props.houses);
+		const orderedhouse = computed(()=> {
+			return [...props.houses].sort((a: House, b: House) => {
+				return a[props.order] > b[props.order]? 1: -1
+			})
+		})
+		return {orderedhouse}
 	},
 });
 </script>
@@ -24,13 +30,13 @@ export default defineComponent({
 	<div class="hous-list">
     <h3>Order by {{ order }}</h3>
 		<ul>
-			<li v-for="st in houses" :key="st.id">
+			<li v-for="ho in orderedhouse" :key="ho.id">
 				<h2>
-					{{ st.name }} in {{ st.region }} region. Square meters:
-					{{ st.square }}
+					{{ ho.name }} in {{ ho.region }} region. Square meters:
+					{{ ho.sqare }}
 				</h2>
 				<div class="price">
-					<p>Price: $ {{ st.price }}</p>
+					<p>Price: $ {{ ho.price }}</p>
 				</div>
 				<div class="description">
 					<p>

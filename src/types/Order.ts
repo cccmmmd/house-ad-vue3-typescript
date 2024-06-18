@@ -1,3 +1,3 @@
-type Order = 'Price' | 'Sqare' | 'Region'
+type Order = 'price' | 'sqare' | 'region'
 
 export default Order

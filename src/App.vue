@@ -11,37 +11,37 @@ export default defineComponent({
   setup() {
     const houses = ref<House[]>([
       { name: 'Exquisite room',
-        square: 20,
+        sqare: 20,
         id: 'A01',
         region: 'North',
-        price: 660
+        price: 760
       },
       { name: 'Junior Suite',
-        square: 10,
+        sqare: 10,
         id: 'M03',
         region: 'South',
         price: 600
       },
       { name: 'Family House',
-        square: 55,
+        sqare: 55,
         id: 'A06',
         region: 'North',
         price: 900
       },
       { name: 'Double room',
-        square: 25,
+        sqare: 25,
         id: 'A13',
         region: 'West',
         price: 700
       },
       { name: 'Triple room',
-        square: 35,
+        sqare: 35,
         id: 'C20',
         region: 'South',
         price: 800
       },
       { name: 'Quadruple room',
-        square: 60,
+        sqare: 50,
         id: 'N12',
         region: 'West',
         price: 1000
@@ -61,9 +61,9 @@ export default defineComponent({
 	<div class="app">
     <header>
       <div class="order">
-        <button @click="clickHandler('Price')">Order by price</button>
-		    <button @click="clickHandler('Sqare')">Order by sqare</button>
-		    <button @click="clickHandler('Region')">Order by region</button>
+        <button @click="clickHandler('price')">Order by price</button>
+		    <button @click="clickHandler('sqare')">Order by sqare</button>
+		    <button @click="clickHandler('region')">Order by region</button>
       </div>
     </header>
 				<HouseList :houses="houses" :order="order" />
